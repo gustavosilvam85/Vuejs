@@ -1,21 +1,48 @@
-const app = Vue.createApp({
-  data() {
+const app = Vue.createApp( {
+  data(){
     return {
       counter: 0,
       name: '',
-    };
+      lastname: '',
+      // fullname:'',
+    }
+  },
+  watch: {
+    counter(value){
+      if(value > 50){
+        setTimeout(function (){
+          this.counter = 0;
+        },2000);
+      }
+      console.log("foi resetado");
+    }
+    // name(value){
+    //   if(value === ''){
+    //     this.fullname = '';
+    //   }else{
+    //     this.fullname = value + ' ' + this.lastname
+    //   }
+    // },
+    // lastname(value){
+    //   if(value === ''){
+    //     this.fullname = '';
+    //   }else{
+    //     this.fullname = this.name + ' ' + value
+    //   }
+    // }
   },
   computed:{
     fullname(){
-      if(this.name === ''){
+      if(this.name === '' || this.lastname === ''){
         return '';
       }
-      return this.name + ' ' + 'Silva'
+      return this.name + ' ' + this.lastname
     }
   },
   methods: {
     resetInput(){
-      this.name = '';
+      this.name = '',
+      this.lastName = '';
     },
     setName(event, lastName) {
       this.name = event.target.value + ' ' + lastName;
@@ -29,5 +56,4 @@ const app = Vue.createApp({
     }
   }
 });
-
 app.mount('#events');
