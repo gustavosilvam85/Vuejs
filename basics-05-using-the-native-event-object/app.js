@@ -10,11 +10,11 @@ const app = Vue.createApp( {
   watch: {
     counter(value){
       if(value > 50){
+        const that = this;
         setTimeout(function (){
-          this.counter = 0;
+          that.counter = 0;
         },2000);
       }
-      console.log("foi resetado");
     }
     // name(value){
     //   if(value === ''){
